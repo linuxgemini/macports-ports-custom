@@ -47,7 +47,6 @@ set portfetch::mirror_sites::sites(cpan) {
     http://cpan.inode.at/modules/by-module/
     http://cpan.inspire.net.nz/modules/by-module/
     http://cpan.ip-connect.vn.ua/modules/by-module/
-    http://cpan.llarian.net/modules/by-module/
     http://cpan.lnx.sk/modules/by-module/
     http://cpan.mines-albi.fr/modules/by-module/
     https://cpan.mirror.ac.za/modules/by-module/
@@ -66,7 +65,6 @@ set portfetch::mirror_sites::sites(cpan) {
     http://cpan.mirrors.ionfish.org/modules/by-module/
     http://cpan.mirrors.tds.net/modules/by-module/
     http://cpan.mirrors.uk2.net/modules/by-module/
-    http://cpan.mmgdesigns.com.ar/modules/by-module/
     http://cpan.nctu.edu.tw/modules/by-module/
     http://cpan.noris.de/modules/by-module/
     http://cpan.pair.com/modules/by-module/
@@ -81,7 +79,6 @@ set portfetch::mirror_sites::sites(cpan) {
     http://cpan.uni-altai.ru/modules/by-module/
     http://cpan.webdesk.ru/modules/by-module/
     https://cpan.zbr.pt/modules/by-module/
-    http://download.xs4all.nl/CPAN/modules/by-module/
     http://httpupdate118.cpanel.net/CPAN/modules/by-module/
     http://httpupdate127.cpanel.net/CPAN/modules/by-module/
     http://kartolo.sby.datautama.net.id/CPAN/modules/by-module/
@@ -443,6 +440,7 @@ set pek.cn      ${letsencrypt_https_or_http}
 #set ykf.ca      ${letsencrypt_https_or_http}
 set ykf.ca      http
 set ywg.ca      ${letsencrypt_https_or_http}
+set fcix.net    http
 
 set portfetch::mirror_sites::sites(macports_distfiles) [lsearch -all -glob -inline -not "
     ${fastly}://distfiles.macports.org/:mirror
@@ -461,6 +459,7 @@ set portfetch::mirror_sites::sites(macports_distfiles) [lsearch -all -glob -inli
     ${pek.cn}://pek.cn.distfiles.macports.org/macports/distfiles/:mirror
     ${ykf.ca}://ykf.ca.distfiles.macports.org/MacPorts/mpdistfiles/:mirror
     ${ywg.ca}://ywg.ca.distfiles.macports.org/mirror/macports/distfiles/:mirror
+    ${fcix.net}://mirror.fcix.net/macports/distfiles/:mirror
 " {:*}]
 
 # MySQL
