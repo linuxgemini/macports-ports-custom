@@ -15,7 +15,7 @@ endgroup() {
     printtag "endgroup"
 }
 
-MACPORTS_VERSION=2.7.2
+MACPORTS_VERSION=2.8.1
 
 OS_MAJOR=$(uname -r | cut -f 1 -d .)
 OS_ARCH=$(uname -m)
@@ -25,6 +25,7 @@ case "$OS_ARCH" in
         ;;
 esac
 
+MACPORTS_FILENAME=MacPorts-${MACPORTS_VERSION}-${OS_MAJOR}.tar.bz2
 
 begingroup "Fetching files"
 # Download resources in background ASAP but use later.
@@ -33,7 +34,7 @@ echo "Fetching getopt..."
 /usr/bin/curl -fsSLO "https://distfiles.macports.org/_ci/getopt/getopt-v1.1.6.tar.bz2" &
 curl_getopt_pid=$!
 echo "Fetching MacPorts..."
-/usr/bin/curl -fsSLO "https://github.com/macports/macports-ci-files/releases/download/v${MACPORTS_VERSION}/MacPorts-${OS_MAJOR}.tar.bz2" &
+/usr/bin/curl -fsSLO "https://github.com/macports/macports-ci-files/releases/download/v${MACPORTS_VERSION}/${MACPORTS_FILENAME}" &
 curl_mpbase_pid=$!
 echo "Fetching PortIndex..."
 /usr/bin/curl -fsSLo ports/PortIndex "https://ftp.fau.de/macports/release/ports/PortIndex_darwin_${OS_MAJOR}_${OS_ARCH}/PortIndex" &
@@ -83,8 +84,8 @@ begingroup "Installing MacPorts"
 # Install MacPorts built by https://github.com/macports/macports-base/tree/master/.github
 wait $curl_mpbase_pid
 echo "Extracting..."
-sudo tar -xpf "MacPorts-${OS_MAJOR}.tar.bz2" -C /
-rm -f "MacPorts-${OS_MAJOR}.tar.bz2"
+sudo tar -xpf "${MACPORTS_FILENAME}" -C /
+rm -f "${MACPORTS_FILENAME}"
 endgroup
 
 
@@ -92,7 +93,7 @@ begingroup "Configuring MacPorts"
 # Set PATH for portindex
 source /opt/local/share/macports/setupenv.bash
 # Set ports tree to $PWD/ports
-sudo sed -i "" "s|rsync://rsync.macports.org/macports/release/tarballs/ports.tar|file://${PWD}/ports|; /^file:/s/default/nosync,default/" /opt/local/etc/macports/sources.conf
+sudo sed -i "" "s|# MacPorts system-wide configuration file for ports tree sources.|file://${PWD}/ports [nosync]|" /opt/local/etc/macports/sources.conf
 # CI is not interactive
 echo "ui_interactive no" | sudo tee -a /opt/local/etc/macports/macports.conf >/dev/null
 # Only download from the CDN, not the mirrors
@@ -108,9 +109,9 @@ endgroup
 
 begingroup "Updating PortIndex"
 ## Run portindex on recent commits if PR is newer
-git -C ports/ remote add macports https://github.com/macports/macports-ports.git
+git -C ports/ remote add macports https://github.com/linuxgemini/macports-ports-custom.git
 git -C ports/ fetch macports master
-git -C ports/ checkout -qf macports/master~10
+git -C ports/ checkout -qf macports/master~2
 git -C ports/ checkout -qf -
 git -C ports/ checkout -qf "$(git -C ports/ merge-base macports/master HEAD)"
 ## Ignore portindex errors on common ancestor

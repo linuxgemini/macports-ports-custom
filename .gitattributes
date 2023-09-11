@@ -5,4 +5,3 @@
 # Don't normalize EOLs of files derived from an upstream.
 *.diff -text
 *.patch -text
-net/nagios-plugins/files/check_nt.c -text

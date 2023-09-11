@@ -2,7 +2,7 @@
 
 PortSystem          1.0
 
-version             1.1.1.84
+version             1.2.0
 revision            0
 
 name                speedtest
@@ -16,16 +16,15 @@ description         official cli for speedtest.net
 long_description    command line interface for testing internet bandwidth using speedtest.net
 
 master_sites        https://install.speedtest.net/app/cli/
-distname            ookla-speedtest-${version}-macosx-x86_64
+distname            ookla-speedtest-${version}-macosx-universal
 extract.suffix      .tgz
 extract.mkdir       yes
 
-universal_variant   yes
 supported_archs     x86_64 arm64
 
-checksums           rmd160  c16334261d6858b21ef08ebb4886ced3c303420e \
-                    sha256  153f76e4e502a2bb470c7f7c3b4b8afaa50eb98bb11e86216fcb1a8b92676e94 \
-                    size    1019149
+checksums           rmd160  26ddcf87df4b920900cf919beefb9057b05c34fc \
+                    sha256  c9f8192149ebc88f8699998cecab1ce144144045907ece6f53cf50877f4de66f \
+                    size    1074443
 
 use_configure       no
 build {}
