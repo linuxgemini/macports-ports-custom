@@ -126,3 +126,7 @@ begingroup "Running postflight"
 # Create macports user
 sudo /opt/local/libexec/macports/postflight/postflight
 endgroup
+
+begingroup "Sync disrtrib PI"
+sudo port -d sync
+endgroup
