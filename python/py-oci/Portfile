@@ -1,0 +1,40 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-oci
+version             2.112.4
+revision            0
+
+categories-append   net
+
+license             UPL-1 Apache-2
+platforms           {darwin any}
+supported_archs     noarch
+maintainers         nomaintainer
+
+description         Oracle Cloud Infrastructure Python SDK
+long_description    {*}${description}
+
+homepage            https://docs.oracle.com/en-us/iaas/tools/python/latest/index.html
+
+checksums           md5     d626b95c288083d60e6d05c6bc011a70 \
+                    rmd160  de7c6d3c3068f86120bbe171beba64875c92bce3 \
+                    sha256  3bd7502f70e6cfcc18dfb4b987115394cd18f331c3dec81485dc6cd601ad9a00 \
+                    size    11234314
+
+python.versions     38 39 310 311
+
+if {${subport} ne ${name}} {
+    depends_build-append \
+                    port:py${python.version}-setuptools
+
+    depends_run-append \
+                    port:py${python.version}-tz \
+                    port:py${python.version}-certifi \
+                    port:py${python.version}-openssl \
+                    port:py${python.version}-dateutil \
+                    port:py${python.version}-cryptography \
+                    port:py${python.version}-circuitbreaker \
+}
