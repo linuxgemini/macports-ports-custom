@@ -425,7 +425,6 @@ set aarnet.au   http
 set atl.us      http
 set cph.dk      ${letsencrypt_https_or_http}
 set cjj.kr      http
-set ema.uk      ${letsencrypt_https_or_http}
 # cert doesn't have macports.org SANs; admin notified
 #set fco.it      ${letsencrypt_https_or_http}
 set fco.it      http
@@ -444,22 +443,21 @@ set fcix.net    http
 
 set portfetch::mirror_sites::sites(macports_distfiles) [lsearch -all -glob -inline -not "
     ${fastly}://distfiles.macports.org/:mirror
+    ${nue.de}://nue.de.distfiles.macports.org/:mirror
+    ${fcix.net}://mirror.fcix.net/macports/distfiles/:mirror
     ${aarnet.au}://aarnet.au.distfiles.macports.org/pub/macports/distfiles/:mirror
     ${atl.us}://atl.us.distfiles.macports.org/:mirror
     ${cjj.kr}://cjj.kr.distfiles.macports.org/:mirror
     ${cph.dk}://cph.dk.distfiles.macports.org/:mirror
-    ${ema.uk}://ema.uk.distfiles.macports.org/:mirror
     ${fco.it}://fco.it.distfiles.macports.org/:mirror
     ${fra.de}://fra.de.distfiles.macports.org/:mirror
     ${jnb.za}://jnb.za.distfiles.macports.org/distfiles/:mirror
     ${jog.id}://jog.id.distfiles.macports.org/macports/distfiles/:mirror
     ${kmq.jp}://kmq.jp.distfiles.macports.org/:mirror
     ${mse.uk}://mse.uk.distfiles.macports.org/:mirror
-    ${nue.de}://nue.de.distfiles.macports.org/:mirror
     ${pek.cn}://pek.cn.distfiles.macports.org/macports/distfiles/:mirror
     ${ykf.ca}://ykf.ca.distfiles.macports.org/MacPorts/mpdistfiles/:mirror
     ${ywg.ca}://ywg.ca.distfiles.macports.org/mirror/macports/distfiles/:mirror
-    ${fcix.net}://mirror.fcix.net/macports/distfiles/:mirror
 " {:*}]
 
 # MySQL

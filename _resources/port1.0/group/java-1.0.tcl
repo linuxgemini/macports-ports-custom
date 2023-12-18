@@ -17,17 +17,13 @@
 # - "+" and "*" wildcards are supported
 #
 # If the required Java cannot be found, an error will be thrown at pre-fetch.
-#
-# Sometimes a port hard code inside produces scripts and other files used JVM,
-# then its true use java.enforce to enforce dependency.
 
-options java.version java.home java.fallback java.deptypes java.enforce
+options java.version java.home java.fallback java.deptypes
 
 default java.version  {}
 default java.home     {}
 default java.fallback {[java::java_get_default_fallback]}
 default java.deptypes lib
-default java.enforce  no
 
 # allow PortGroup to be used inside a variant (e.g. octave)
 global java_version_not_found
@@ -60,15 +56,11 @@ namespace eval java {
         if { ${java.version} ne "" } {
             ui_debug "java-portgroup: Trying to find JVM version: ${java.version}"
 
-            # If on arm automatically adjust to the *-zulu fallback versions
-            # as required, as currently these are the only ones supporting arm.
-            # To be reviewed as support for arm comes for the other versions.
-            # Following regex matches openjdk<version> only.
+            # If on arm automatically adjust openjdk8 to openjdk8-zulu, because openjdk8 doesn't support arm yet
             # Keep in mind that configure.build_arch isn't available here
             global os.arch
-            if { ${os.arch} eq "arm" &&
-                 [regexp {openjdk(\d{1,2}$)} ${java.fallback}] } {
-                set newjdk ${java.fallback}-zulu
+            if { ${os.arch} eq "arm" && ${java.fallback} eq "openjdk8" } {
+                set newjdk openjdk8-zulu
                 ui_debug "Redefining java fallback ${java.fallback} to ${newjdk} for arm compatibility"
                 java.fallback ${newjdk}
             }
@@ -128,7 +120,7 @@ namespace eval java {
         }
 
         # Add dependency if required
-        if { (${java_version_not_found} || [option java.enforce]) && ${java.fallback} ne "" } {
+        if { ${java_version_not_found} && ${java.fallback} ne "" } {
             ui_debug "Adding dependency on JDK fallback ${java.fallback}"
             foreach deptype [option java.deptypes] {
                 depends_${deptype}-append port:${java.fallback}

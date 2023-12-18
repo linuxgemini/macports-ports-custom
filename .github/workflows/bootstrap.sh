@@ -111,7 +111,7 @@ begingroup "Updating PortIndex"
 ## Run portindex on recent commits if PR is newer
 git -C ports/ remote add macports https://github.com/linuxgemini/macports-ports-custom.git
 git -C ports/ fetch macports master
-git -C ports/ checkout -qf macports/master~2
+git -C ports/ checkout -qf macports/master~10
 git -C ports/ checkout -qf -
 git -C ports/ checkout -qf "$(git -C ports/ merge-base macports/master HEAD)"
 ## Ignore portindex errors on common ancestor

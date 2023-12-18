@@ -132,7 +132,7 @@ proc universal_setup {args} {
     }
 
     # set universal_archs_to_use as the intersection of universal_archs and universal_archs_supported
-    set universal_archs_to_use {}
+    set universal_archs_to_use [list]
     foreach arch ${configure.universal_archs} {
         if {${arch} in ${universal_archs_supported}} {
             lappend universal_archs_to_use ${arch}
@@ -299,7 +299,7 @@ variant universal {
                 if {$merger_host($arch) ne ""} {
                     set host  --host=$merger_host($arch)
                 }
-            } elseif {([file tail ${configure.cmd}] ne "cmake") && ([file tail ${configure.cmd}] ne "meson")} {
+            } elseif {([file tail ${configure.cmd}] ni [list cmake meson printenv])} {
                 # check if building for a word length we can't run
                 set bits_differ 0
                 if {${arch} in [list ppc64 x86_64] &&
@@ -871,7 +871,7 @@ variant universal {
 '}
 
         if { ![info exists merger_dont_diff] } {
-            set merger_dont_diff {}
+            set merger_dont_diff [list]
         }
 
         merge2Dir  ${workpath}/destroot-ppc      ${workpath}/destroot-ppc64     ${workpath}/destroot-powerpc   ""  ppc ppc64      ${merger_dont_diff}  ${diffFormatM}
