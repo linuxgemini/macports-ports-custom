@@ -54,6 +54,7 @@ variant rtlsdrblog description {Use RTL-SDR Blog Driver for V4 dongles} {
     checksums       rmd160  5943b73f82288b92c19aac72b385b41c0a227b7d \
                     sha256  b785ee7c0e0c3607cfe42bcb1ffd38e4dc1979d70061c3185f4cc60a9a747dd8 \
                     size    138105
+    homepage        https://github.com/rtlsdrblog/rtl-sdr-blog
 
     configure.compiler \
                     macports-gcc-13
