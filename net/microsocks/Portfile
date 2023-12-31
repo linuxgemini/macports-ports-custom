@@ -1,0 +1,30 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           github 1.0
+
+name                microsocks
+
+github.setup        rofl0r microsocks 655c53d27df0bd69e0ecfa8309ce2940797f3362
+version             1.0.3+[string range ${github.version} 0 7]
+checksums           rmd160  7b96ed805c9c384ddae0d7b3003717c21f5ead28 \
+                    sha256  86a2a746149328ceb9c369219ba76c651a6ff2a6339532226a3fad5cd4d61f27 \
+                    size    9910
+revision            0
+
+categories          net comms
+platforms           darwin
+license             MIT
+maintainers         openmaintainer
+description         tiny, portable SOCKS5 server with very moderate resource usage
+long_description    ${description}
+homepage            https://github.com/rofl0r/microsocks
+
+patchfiles-append   0001-add-config.patch
+patch.pre_args      -p1
+
+use_configure       no
+
+build.env-append    MP_PREFIX=${prefix}
+
+destroot.env        {*}${build.env}

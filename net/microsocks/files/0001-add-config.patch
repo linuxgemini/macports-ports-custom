@@ -1,0 +1,26 @@
+From 16a8644bf88da50de8b6acd55895ad1b9893479f Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=C4=B0lteri=C5=9F=20Ya=C4=9F=C4=B1ztegin=20Ero=C4=9Flu?=
+ <ilteris@asenkron.com.tr>
+Date: Sun, 31 Dec 2023 13:20:36 +0300
+Subject: [PATCH] add config
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: İlteriş Yağıztegin Eroğlu <ilteris@asenkron.com.tr>
+---
+ config.mak | 2 ++
+ 1 file changed, 2 insertions(+)
+ create mode 100644 config.mak
+
+diff --git a/config.mak b/config.mak
+new file mode 100644
+index 0000000..3e26c65
+--- /dev/null
++++ b/config.mak
+@@ -0,0 +1,2 @@
++MP_PREFIX ?= /opt/local
++prefix = $(MP_PREFIX)
+-- 
+2.43.0
+
