@@ -28,7 +28,7 @@ maintainers         {@linuxgemini linuxgemini.space:proxmark3packaging} openmain
 depends_lib-append  port:readline \
                     port:jansson \
                     port:lua52 \
-                    port:python312 \
+                    port:python311 \
                     port:bzip2 \
                     port:openssl11
 
@@ -47,7 +47,7 @@ depends_build-append \
 # configure phase instead of making new ones before passing them
 # to build and destroot envs.
 
-set python_version  3.12
+set python_version  3.11
 set python_prefix   ${frameworks_dir}/Python.framework/Versions/${python_version}
 configure.python    ${prefix}/bin/python${python_version}
 
