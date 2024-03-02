@@ -17,7 +17,7 @@
 #
 # python.consistent_destroot: set consistent environment values in build and destroot phases
 #
-# python.pep517: build using PEP517 (default is "no")
+# python.pep517: build using PEP517 (default is "yes" for Python 3.7+)
 # python.pep517_backend: specify the backend to use; one of "setuptools" (default),
 #   "flit", "hatch", "poetry", "maturin", or "meson"
 #
@@ -80,7 +80,7 @@ proc python_get_version {} {
 
 proc python_get_default_version {} {
     global python.versions
-    set def_v 311
+    set def_v 312
     if {[info exists python.versions]} {
         if {${def_v} in ${python.versions}} {
             return ${def_v}
