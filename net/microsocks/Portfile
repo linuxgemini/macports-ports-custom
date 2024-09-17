@@ -5,11 +5,11 @@ PortGroup           github 1.0
 
 name                microsocks
 
-github.setup        rofl0r microsocks 655c53d27df0bd69e0ecfa8309ce2940797f3362
-version             1.0.3+[string range ${github.version} 0 7]
-checksums           rmd160  7b96ed805c9c384ddae0d7b3003717c21f5ead28 \
-                    sha256  86a2a746149328ceb9c369219ba76c651a6ff2a6339532226a3fad5cd4d61f27 \
-                    size    9910
+github.setup        rofl0r microsocks 98421a21c4adc4c77c0cf3a5d650cc28ad3e0107
+version             1.0.4+[string range ${github.version} 0 7]
+checksums           sha256  5566d4fba5fb7f74504a5af79c6058dc033617a1bc1d6e0f14d551b994774fce \
+                    rmd160  93a0b07b9b5b4ceea67a51ee36ab331ccdc936cf \
+                    size    10414
 revision            0
 
 categories          net comms
