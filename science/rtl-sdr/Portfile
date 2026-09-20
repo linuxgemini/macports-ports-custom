@@ -6,15 +6,15 @@ PortGroup           github 1.0
 
 name                rtl-sdr
 
-github.setup        osmocom rtl-sdr 5e73f90f1d85d8db2e583f3dbf1cff052d71d59b
-version             20220115-[string range ${github.version} 0 7]
-checksums           rmd160  b20663bafc564401df066039a4e83a5215d99093 \
-                    sha256  19ed112e1f7f425dd77c98d81d205ebe8ec7aa372e6a92bcb2a50cf6eca274fd \
-                    size    134207
+github.setup        osmocom rtl-sdr 2.0.2 v
+github.tarball_from archive
 revision            0
-
+epoch               1
+checksums           rmd160  7aac7ef6cb24229d6774367a6e6c45e52a0bbbe9 \
+                    sha256  d69943eb32df742bc38a00ce6615e41250fd57851174e5ff916ec31e9e9e68e9 \
+                    size    136512
+revision            0
 categories          science comms
-platforms           darwin
 license             GPL-2+
 maintainers         {michaelld @michaelld} openmaintainer
 description         ${name} allows using devices with a RTL2832U chipset as software defined radio (SDR)
@@ -30,15 +30,6 @@ depends_lib-append   path:lib/pkgconfig/libusb-1.0.pc:libusb
 configure.ldflags-delete -L${prefix}/lib
 configure.cppflags-delete -I${prefix}/include
 
-# patch to allow us to override git describe
-
-patchfiles-append   patch-fix-git-describe.diff
-patch.pre_args -p1
-
-# set the string to use in place of git describe since that won't work
-
-configure.args-append -DRTL_SDR_GIT_INFO="${version}-MacPorts"
-
 # rtl-sdr cmake doesn't understand build type "MacPorts";
 # use release unless +debug is set
 
@@ -49,13 +40,16 @@ if {[variant_isset debug]} {
 }
 
 variant rtlsdrblog description {Use RTL-SDR Blog Driver for V4 dongles} {
-    github.setup    rtlsdrblog rtl-sdr-blog 04a88752b6b9542fea2ab8ef545ae7e9d9136f2b
-    version         20231221-[string range ${github.version} 0 7]
-    checksums       rmd160  5943b73f82288b92c19aac72b385b41c0a227b7d \
-                    sha256  b785ee7c0e0c3607cfe42bcb1ffd38e4dc1979d70061c3185f4cc60a9a747dd8 \
-                    size    138105
+    github.setup    rtlsdrblog rtl-sdr-blog aed0ea19f3a273370a13c9009b96313c75d54c7b
+    version         20260322-[string range ${github.version} 0 7]
+    checksums       rmd160  932dc3242f6dfe01d47de50c289aa8d13ae5c6d5 \
+                    sha256  53d070b234507bd0eaa25ee2ec7b4e69d93a038ccf970c1390ad84162d3da5e1 \
+                    size    138562
     homepage        https://github.com/rtlsdrblog/rtl-sdr-blog
 
+    patch.pre_args  -p1
+    patchfiles      patch-fix-git-describe.diff
+
     configure.compiler \
-                    macports-gcc-13
+                    macports-gcc-15
 }
