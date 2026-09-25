@@ -143,7 +143,8 @@ if [ -n "$PRIVATE_PACKAGES_CREDENTIALS" ]; then
     echo "fetch_credentials  packages-private.macports.org $PRIVATE_PACKAGES_CREDENTIALS" | sudo tee -a /opt/local/etc/macports/macports.conf >/dev/null
 fi
 # Include $PWD/ports (without syncing) alongside regular ports tree
-sudo sed -i "" "s|# MacPorts system-wide configuration file for ports tree sources.|file://${PWD}/ports [nosync]|" /opt/local/etc/macports/sources.conf
+echo "file://${PWD}/ports [nosync]" | sudo tee /opt/local/etc/macports/sources.conf >/dev/null
+echo "rsync://rsync.macports.org/macports/release/tarballs/ports.tar.gz [default]" | sudo tee -a /opt/local/etc/macports/sources.conf >/dev/null
 # Install MacPorts
 if ! wait $curl_mpbase_pid; then
     echo "Fetching base failed: $?"
